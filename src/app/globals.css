@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-ink-950 antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    @apply bg-frost-200 text-ink-950;
+  }
+
+  /* Consistent focus ring across interactive elements */
+  :focus-visible {
+    @apply outline-none ring-2 ring-frost-500 ring-offset-2 ring-offset-white;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-display tracking-tight text-ink-950;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  /* Page section container spacing */
+  .section {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  /* Faint molecular grid used behind hero / feature sections */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(15 39 99 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(15 39 99 / 0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(rgb(255 255 255 / 0.14) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Eyebrow / kicker label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-frost-700;
+  }
+
+  .link-underline {
+    @apply relative inline-flex items-center gap-1 font-medium text-ink-700 transition-colors hover:text-frost-700;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Article / long-form content styling (Learn + legal pages) */
+.prose-north {
+  @apply max-w-none text-ink-800;
+}
+.prose-north h2 {
+  @apply mt-10 mb-3 text-2xl font-semibold text-ink-950;
+}
+.prose-north h3 {
+  @apply mt-8 mb-2 text-lg font-semibold text-ink-950;
+}
+.prose-north p {
+  @apply my-4 leading-relaxed text-ink-700;
+}
+.prose-north ul {
+  @apply my-4 list-disc space-y-2 pl-6 text-ink-700;
+}
+.prose-north ol {
+  @apply my-4 list-decimal space-y-2 pl-6 text-ink-700;
+}
+.prose-north strong {
+  @apply font-semibold text-ink-950;
+}
+.prose-north blockquote {
+  @apply my-6 rounded-r-lg border-l-4 border-frost-400 bg-frost-50 py-3 pl-5 pr-4 text-ink-700;
+}
+.prose-north a {
+  @apply font-medium text-frost-700 underline underline-offset-2;
+}
