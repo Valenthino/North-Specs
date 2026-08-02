@@ -89,14 +89,14 @@ supabase db push          # applies migrations
 supabase db execute --file supabase/seed.sql
 ```
 
-**Option B — Dashboard SQL editor**
+**Option B — Dashboard SQL editor (one paste)**
 
-Paste and run each file in order:
-1. `supabase/migrations/20260801000001_init_schema.sql`
-2. `supabase/migrations/20260801000002_functions.sql`
-3. `supabase/migrations/20260801000003_rls.sql`
-4. `supabase/migrations/20260801000004_storage.sql`
-5. `supabase/seed.sql` *(optional demo catalogue)*
+Open **Supabase Dashboard → SQL Editor**, paste the entire contents of
+[`supabase/setup.sql`](./supabase/setup.sql), and run it once. That single file
+bundles the schema, functions, RLS, storage buckets, and demo catalogue.
+
+*(Or run each source file individually in order: `migrations/20260801000001_init_schema.sql`,
+`…000002_functions.sql`, `…000003_rls.sql`, `…000004_storage.sql`, then `seed.sql`.)*
 
 ### 3. Regenerate types (optional)
 
