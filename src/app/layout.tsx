@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { Header } from "@/components/layout/header";
@@ -6,6 +7,27 @@ import { Footer } from "@/components/layout/footer";
 import { TopComplianceBar } from "@/components/compliance/ruo-notice";
 import { ResearchGate } from "@/components/compliance/research-gate";
 import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+
+// Synapse type system: Inter for display, Space Grotesk for body, JetBrains Mono for technical labels.
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -36,14 +58,17 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a1b34",
+  themeColor: "#111827",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-CA">
+    <html
+      lang="en-CA"
+      className={cn(inter.variable, spaceGrotesk.variable, jetbrainsMono.variable)}
+    >
       <body className="flex min-h-screen flex-col">
         <CartProvider>
           <TopComplianceBar />
