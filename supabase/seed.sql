@@ -1,5 +1,5 @@
 -- ============================================================================
--- North Specs Peptides — Seed data (Research Use Only catalogue)
+-- North Specs Labs — Seed data (Research Use Only catalogue)
 -- Safe to re-run: uses ON CONFLICT (slug) DO NOTHING.
 -- Prices are in CAD cents.
 -- ============================================================================

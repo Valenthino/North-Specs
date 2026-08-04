@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-/** North Specs mark: a compass/north-star node inside a molecular hexagon. */
+/**
+ * North Specs mark — the brand hexagon from the vial labels, with the "N"
+ * cut through the centre and a molecular node at each shoulder.
+ */
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg
@@ -12,18 +15,20 @@ export function LogoMark({ className }: { className?: string }) {
       aria-hidden
     >
       <path
-        d="M20 2.5 L34.5 11 V29 L20 37.5 L5.5 29 V11 Z"
+        d="M20 2.6 L34.4 11 V29 L20 37.4 L5.6 29 V11 Z"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="2.4"
         strokeLinejoin="round"
-        className="text-frost-400"
       />
       <path
-        d="M20 9 L23 19 L33 20 L23 21 L20 31 L17 21 L7 20 L17 19 Z"
-        fill="currentColor"
-        className="text-frost-400"
+        d="M14.6 27.2 V13.2 L25.4 26.8 V12.8"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <circle cx="20" cy="20" r="2.6" fill="currentColor" className="text-white" />
+      <circle cx="34.4" cy="11" r="1.9" fill="currentColor" />
+      <circle cx="5.6" cy="29" r="1.9" fill="currentColor" />
     </svg>
   );
 }
@@ -39,20 +44,20 @@ export function Logo({
     <Link
       href="/"
       className={cn("group inline-flex items-center gap-2.5", className)}
-      aria-label="North Specs Peptides — home"
+      aria-label="North Specs Labs — home"
     >
       <span
         className={cn(
           "flex h-10 w-10 items-center justify-center rounded-xl transition-transform group-hover:scale-105",
-          variant === "dark" ? "bg-ink-950" : "bg-white/10",
+          variant === "dark" ? "bg-ink-950 text-frost-300" : "bg-white/10 text-frost-300",
         )}
       >
-        <LogoMark />
+        <LogoMark className="h-[26px] w-[26px]" />
       </span>
       <span className="flex flex-col leading-none">
         <span
           className={cn(
-            "font-display text-lg font-bold tracking-tight",
+            "font-display text-[19px] font-semibold leading-none tracking-tight",
             variant === "dark" ? "text-ink-950" : "text-white",
           )}
         >
@@ -60,11 +65,11 @@ export function Logo({
         </span>
         <span
           className={cn(
-            "text-[10px] font-semibold uppercase tracking-[0.22em]",
+            "mt-1 text-[10px] font-semibold uppercase tracking-[0.28em]",
             variant === "dark" ? "text-frost-600" : "text-frost-300",
           )}
         >
-          Peptides
+          Labs
         </span>
       </span>
     </Link>

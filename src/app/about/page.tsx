@@ -6,9 +6,9 @@ import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "About North Specs Peptides",
+  title: "About North Specs Labs",
   description:
-    "North Specs Peptides supplies high-purity, third-party-tested research peptides to Canadian labs and researchers.",
+    "North Specs Labs supplies high-purity, third-party-tested research peptides to Canadian labs and researchers.",
 };
 
 export default function AboutPage() {
@@ -22,7 +22,7 @@ export default function AboutPage() {
             Making research peptides more accessible — and more trustworthy — for Canadian science.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-white/70">
-            North Specs Peptides was founded by researchers who were frustrated by opaque sourcing,
+            North Specs Labs was founded by researchers who were frustrated by opaque sourcing,
             missing documentation and inconsistent purity. We built the supplier we wished we had.
           </p>
         </Container>

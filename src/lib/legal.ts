@@ -12,7 +12,7 @@ export const legalDocs: Record<string, LegalDoc> = {
     updated: "2026-07-01",
     content: `## Research Use Only
 
-All products supplied by North Specs Peptides are intended **strictly for laboratory and in-vitro research use**. They are **not** drugs, foods, cosmetics, medical devices or dietary supplements, and are **not intended for human or veterinary use**.
+All products supplied by North Specs Labs are intended **strictly for laboratory and in-vitro research use**. They are **not** drugs, foods, cosmetics, medical devices or dietary supplements, and are **not intended for human or veterinary use**.
 
 ## No diagnostic or therapeutic use
 
@@ -20,7 +20,7 @@ Our products are not intended to diagnose, treat, cure or prevent any disease or
 
 ## Buyer responsibilities
 
-By purchasing from North Specs Peptides you represent and warrant that:
+By purchasing from North Specs Labs you represent and warrant that:
 
 - You are a qualified researcher or an authorized representative of a research organization.
 - You will use all products solely for legitimate laboratory research.
@@ -37,7 +37,7 @@ You are responsible for compliance with all applicable federal, provincial and l
     updated: "2026-07-01",
     content: `## Agreement
 
-These Terms of Sale govern all orders placed with North Specs Peptides. By placing an order you accept these terms and our Research Use Only Policy.
+These Terms of Sale govern all orders placed with North Specs Labs. By placing an order you accept these terms and our Research Use Only Policy.
 
 ## Eligibility
 
@@ -57,7 +57,7 @@ Due to the nature of research materials, products are generally non-returnable o
 
 ## Limitation of liability
 
-Products are provided "as is" for research use. To the maximum extent permitted by law, North Specs Peptides is not liable for any indirect or consequential damages arising from the use or misuse of products.`,
+Products are provided "as is" for research use. To the maximum extent permitted by law, North Specs Labs is not liable for any indirect or consequential damages arising from the use or misuse of products.`,
   },
   privacy: {
     slug: "privacy",
@@ -65,7 +65,7 @@ Products are provided "as is" for research use. To the maximum extent permitted 
     updated: "2026-07-01",
     content: `## Overview
 
-This Privacy Policy explains how North Specs Peptides collects, uses and protects your personal information in accordance with Canadian privacy law (PIPEDA).
+This Privacy Policy explains how North Specs Labs collects, uses and protects your personal information in accordance with Canadian privacy law (PIPEDA).
 
 ## Information we collect
 

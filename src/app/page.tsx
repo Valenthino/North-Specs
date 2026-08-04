@@ -43,7 +43,7 @@ export default async function HomePage() {
               <span className="text-frost-300">verified batch by batch.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
-              North Specs Peptides supplies researchers and laboratories across Canada with
+              North Specs Labs supplies researchers and laboratories across Canada with
               third-party-tested peptides — complete with certificates of analysis, full molecular
               specifications, and reliable cold-chain shipping. Strictly for laboratory research.
             </p>

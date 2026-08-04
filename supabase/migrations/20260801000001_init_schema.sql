@@ -1,5 +1,5 @@
 -- ============================================================================
--- North Specs Peptides — Initial schema
+-- North Specs Labs — Initial schema
 -- Research-grade peptides for Canadian labs & researchers (Research Use Only).
 -- ============================================================================
 

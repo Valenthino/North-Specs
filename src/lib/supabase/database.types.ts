@@ -1,5 +1,5 @@
 /**
- * Database types for the North Specs Peptides schema.
+ * Database types for the North Specs Labs schema.
  *
  * Hand-authored to match `supabase/migrations/*`. Once your project is linked
  * you can regenerate these with:
