@@ -17,7 +17,7 @@ export const env = {
   supabaseServiceRoleKey:
     process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SECRET_KEY ?? "",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  siteName: process.env.NEXT_PUBLIC_SITE_NAME ?? "North Specs Peptides",
+  siteName: process.env.NEXT_PUBLIC_SITE_NAME ?? "North Specs Labs",
 };
 
 /** True when the public Supabase credentials are present. */

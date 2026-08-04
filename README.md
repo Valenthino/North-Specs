@@ -1,4 +1,4 @@
-# North Specs Peptides
+# North Specs Labs
 
 Research-grade peptide e-commerce for Canadian labs and researchers — built with **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **Supabase (Postgres)**.
 

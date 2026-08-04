@@ -3,12 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-    --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
-    --font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
-  }
-
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
@@ -28,8 +22,18 @@
     @apply outline-none ring-2 ring-frost-500 ring-offset-2 ring-offset-white;
   }
 
-  h1, h2, h3, h4, h5 {
-    @apply font-display tracking-tight text-ink-950;
+  /* Serif display voice for the largest headlines only — smaller headings stay
+     in the sans workhorse so product grids and UI keep their clarity. */
+  h1,
+  h2 {
+    @apply font-display font-semibold tracking-[-0.015em] text-ink-950;
+    text-wrap: balance;
+  }
+
+  h3,
+  h4,
+  h5 {
+    @apply font-sans font-bold tracking-tight text-ink-950;
     text-wrap: balance;
   }
 }
@@ -43,14 +47,20 @@
   /* Faint molecular grid used behind hero / feature sections */
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgb(15 39 99 / 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(15 39 99 / 0.04) 1px, transparent 1px);
+      linear-gradient(to right, rgb(20 31 24 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(20 31 24 / 0.05) 1px, transparent 1px);
     background-size: 44px 44px;
   }
 
   .bg-dots {
     background-image: radial-gradient(rgb(255 255 255 / 0.14) 1px, transparent 1px);
     background-size: 22px 22px;
+  }
+
+  /* Hexagonal molecular lattice — the brand texture behind dark bands. */
+  .bg-lattice {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 0 L56 16.17 V48.5 L28 64.67 L0 48.5 V16.17 Z' fill='none' stroke='%23ffffff' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 56px 97px;
   }
 
   /* Eyebrow / kicker label */
@@ -60,6 +70,17 @@
 
   .link-underline {
     @apply relative inline-flex items-center gap-1 font-medium text-ink-700 transition-colors hover:text-frost-700;
+  }
+
+  /* Warm editorial surface lifted from the calculator design language. */
+  .surface-bone {
+    @apply border border-bone-300/70 bg-bone-100;
+  }
+
+  /* Thin brand rule used under section eyebrows. */
+  .rule-brand::after {
+    content: "";
+    @apply mt-3 block h-[3px] w-12 rounded-full bg-frost-500;
   }
 }
 
@@ -74,20 +95,31 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  /* Respect users who prefer reduced motion for our decorative animations. */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-float-slow,
+    .animate-fade-up {
+      animation: none !important;
+    }
+  }
 }
 
-/* Article / long-form content styling (Learn + legal pages) */
+/* Article / long-form content styling (Blog + Learn + legal pages) */
 .prose-north {
   @apply max-w-none text-ink-800;
 }
 .prose-north h2 {
-  @apply mt-10 mb-3 text-2xl font-semibold text-ink-950;
+  @apply mt-12 mb-3 font-display text-[1.75rem] font-semibold leading-snug text-ink-950;
 }
 .prose-north h3 {
-  @apply mt-8 mb-2 text-lg font-semibold text-ink-950;
+  @apply mt-9 mb-2 text-lg font-bold text-ink-950;
+}
+.prose-north h4 {
+  @apply mt-7 mb-2 text-base font-bold text-ink-900;
 }
 .prose-north p {
-  @apply my-4 leading-relaxed text-ink-700;
+  @apply my-4 leading-[1.75] text-ink-700;
 }
 .prose-north ul {
   @apply my-4 list-disc space-y-2 pl-6 text-ink-700;
@@ -95,12 +127,30 @@
 .prose-north ol {
   @apply my-4 list-decimal space-y-2 pl-6 text-ink-700;
 }
+.prose-north li {
+  @apply leading-relaxed;
+}
 .prose-north strong {
   @apply font-semibold text-ink-950;
 }
 .prose-north blockquote {
-  @apply my-6 rounded-r-lg border-l-4 border-frost-400 bg-frost-50 py-3 pl-5 pr-4 text-ink-700;
+  @apply my-6 rounded-r-xl border-l-4 border-frost-500 bg-frost-50 py-4 pl-5 pr-4 text-ink-700;
 }
 .prose-north a {
-  @apply font-medium text-frost-700 underline underline-offset-2;
+  @apply font-medium text-frost-700 underline underline-offset-2 hover:text-frost-800;
+}
+.prose-north hr {
+  @apply my-10 border-ink-200;
+}
+.prose-north table {
+  @apply my-6 w-full border-collapse text-sm;
+}
+.prose-north th {
+  @apply border-b border-ink-300 bg-bone-100 px-3 py-2 text-left font-semibold text-ink-950;
+}
+.prose-north td {
+  @apply border-b border-ink-100 px-3 py-2 align-top text-ink-700;
+}
+.prose-north code {
+  @apply rounded bg-ink-100 px-1.5 py-0.5 font-mono text-[0.85em] text-ink-900;
 }

@@ -1,5 +1,5 @@
 -- ============================================================================
--- North Specs Peptides — Storage buckets
+-- North Specs Labs — Storage buckets
 -- Product imagery and COA PDFs are publicly readable; only staff can write.
 -- ============================================================================
 

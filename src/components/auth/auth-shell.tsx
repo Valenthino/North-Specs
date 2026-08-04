@@ -35,7 +35,7 @@ export function AuthShell({
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
               <LogoMark />
             </span>
-            <span className="font-display text-lg font-bold">North Specs Peptides</span>
+            <span className="font-display text-lg font-bold">North Specs Labs</span>
           </div>
           <div>
             <FlaskConical className="h-10 w-10 text-frost-300" />

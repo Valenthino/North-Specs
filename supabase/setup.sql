@@ -1,5 +1,5 @@
 -- ============================================================================
--- North Specs Peptides — ONE-SHOT SETUP
+-- North Specs Labs — ONE-SHOT SETUP
 -- Paste this entire file into the Supabase Dashboard → SQL Editor and run it
 -- ONCE on a fresh project (ref: swcxswuecljpegbrkbqt).
 -- It creates the schema, functions, RLS policies, storage buckets, and loads
@@ -13,7 +13,7 @@
 -- ─────────────────────────────────────────────────────────────────────────
 
 -- ============================================================================
--- North Specs Peptides — Initial schema
+-- North Specs Labs — Initial schema
 -- Research-grade peptides for Canadian labs & researchers (Research Use Only).
 -- ============================================================================
 
@@ -322,7 +322,7 @@ create table if not exists public.contact_messages (
 -- ─────────────────────────────────────────────────────────────────────────
 
 -- ============================================================================
--- North Specs Peptides — Functions & triggers
+-- North Specs Labs — Functions & triggers
 -- ============================================================================
 
 -- ----------------------------------------------------------------------------
@@ -418,7 +418,7 @@ create trigger orders_set_number
 -- ─────────────────────────────────────────────────────────────────────────
 
 -- ============================================================================
--- North Specs Peptides — Row Level Security
+-- North Specs Labs — Row Level Security
 -- Public can browse the catalogue; users own their data; staff/admin manage all.
 -- ============================================================================
 
@@ -516,7 +516,7 @@ create policy "Staff manage contact messages"
 -- ─────────────────────────────────────────────────────────────────────────
 
 -- ============================================================================
--- North Specs Peptides — Storage buckets
+-- North Specs Labs — Storage buckets
 -- Product imagery and COA PDFs are publicly readable; only staff can write.
 -- ============================================================================
 
@@ -560,7 +560,7 @@ create policy "Staff delete catalogue assets"
 -- ─────────────────────────────────────────────────────────────────────────
 
 -- ============================================================================
--- North Specs Peptides — Seed data (Research Use Only catalogue)
+-- North Specs Labs — Seed data (Research Use Only catalogue)
 -- Safe to re-run: uses ON CONFLICT (slug) DO NOTHING.
 -- Prices are in CAD cents.
 -- ============================================================================

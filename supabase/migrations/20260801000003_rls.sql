@@ -1,5 +1,5 @@
 -- ============================================================================
--- North Specs Peptides — Row Level Security
+-- North Specs Labs — Row Level Security
 -- Public can browse the catalogue; users own their data; staff/admin manage all.
 -- ============================================================================
 

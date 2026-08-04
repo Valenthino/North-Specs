@@ -43,3 +43,6 @@ next-env.d.ts
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# Local MCP config (contains credentials)
+.mcp.json

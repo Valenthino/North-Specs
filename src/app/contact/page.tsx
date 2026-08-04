@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with the North Specs Peptides team about products, batches or research support.",
+  description: "Get in touch with the North Specs Labs team about products, batches or research support.",
 };
 
 export default function ContactPage() {
