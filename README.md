@@ -1,6 +1,26 @@
 # North Specs Labs
 
-Research-grade peptide e-commerce for Canadian labs and researchers — built with **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **Supabase (Postgres)**.
+This repository contains the live custom WordPress and WooCommerce theme for
+[northspecs.ca](https://northspecs.ca), the published research and legal content,
+and an earlier Next.js and Supabase storefront prototype.
+
+## Live WordPress implementation
+
+- Custom theme: [`wordpress-theme/north-specs-labs`](./wordpress-theme/north-specs-labs)
+- Cross-platform design system: [`design.md`](./design.md)
+- Small-design creation prompt: [`small-design-prompt.md`](./small-design-prompt.md)
+- Research, FAQ and legal source content: [`wordpress-content`](./wordpress-content)
+
+The live theme includes the premium Forest Assay visual system, responsive
+navigation, product imagery, WooCommerce shop and account flows, first-party
+order attribution, RUO attestations, a dynamic reconstitution calculator, a
+research library, researcher FAQ and extended legal pages.
+
+## Earlier Next.js prototype
+
+The remaining application code is a research-grade peptide ecommerce prototype
+built with **Next.js 15**, **TypeScript**, **Tailwind CSS**, and **Supabase
+(Postgres)**.
 
 Every product is presented strictly as **Research Use Only — not for human or veterinary use**, with compliance messaging throughout the storefront.
 
