@@ -517,11 +517,17 @@ function nsl_order_history_filters(): array {
 	// phpcs:enable
 }
 
-/** Apply the search, status and date filters to a customer's orders. */
+/**
+ * Apply the search, status and date filters to a customer's orders.
+ *
+ * Dates are compared as local calendar days, so a researcher who picks
+ * "4 August" gets the orders shown as 4 August on screen regardless of how the
+ * order timestamp is stored.
+ */
 function nsl_filter_orders( array $orders, array $filters ): array {
 	$search = strtolower( trim( $filters['search'] ) );
-	$from   = $filters['from'] ? (int) strtotime( $filters['from'] . ' 00:00:00' ) : 0;
-	$to     = $filters['to'] ? (int) strtotime( $filters['to'] . ' 23:59:59' ) : 0;
+	$from   = $filters['from'];
+	$to     = $filters['to'];
 
 	return array_values(
 		array_filter(
@@ -532,11 +538,11 @@ function nsl_filter_orders( array $orders, array $filters ): array {
 				}
 
 				$created = $order->get_date_created();
-				$time    = $created ? $created->getTimestamp() : 0;
-				if ( $from && $time < $from ) {
+				$day     = $created ? wp_date( 'Y-m-d', $created->getTimestamp() ) : '';
+				if ( $from && ( '' === $day || $day < $from ) ) {
 					return false;
 				}
-				if ( $to && $time > $to ) {
+				if ( $to && ( '' === $day || $day > $to ) ) {
 					return false;
 				}
 
