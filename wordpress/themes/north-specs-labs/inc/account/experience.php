@@ -135,8 +135,9 @@ add_filter(
 	'woocommerce_get_query_vars',
 	function ( array $vars ): array {
 		$vars['batch-documents'] = 'batch-documents';
-		unset( $vars['downloads'] );
 
+		// The downloads query var is deliberately kept so bookmarked URLs still
+		// resolve and can be redirected rather than serving a 404.
 		return $vars;
 	}
 );
@@ -151,12 +152,15 @@ add_action(
 	'nsl_account_render_batch_documents'
 );
 
-/** The downloads endpoint is retired: send any bookmarked URL to the workspace. */
+/**
+ * The downloads endpoint is retired — none of the catalogue is downloadable.
+ * Bookmarked URLs land on the workspace rather than an empty page or a 404.
+ */
 add_action(
 	'template_redirect',
 	function (): void {
 		if ( function_exists( 'is_wc_endpoint_url' ) && is_wc_endpoint_url( 'downloads' ) ) {
-			wp_safe_redirect( wc_get_account_endpoint_url( 'dashboard' ) );
+			wp_safe_redirect( is_user_logged_in() ? wc_get_account_endpoint_url( 'dashboard' ) : wc_get_page_permalink( 'myaccount' ) );
 			exit;
 		}
 	}
