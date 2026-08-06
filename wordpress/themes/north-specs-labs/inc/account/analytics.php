@@ -24,19 +24,49 @@ function nsl_analytics_push( string $event, array $params = array() ): void {
 	$GLOBALS['nsl_analytics_events'][] = array_merge( array( 'event' => $event ), nsl_analytics_clean_params( $params ) );
 }
 
+/**
+ * Parameter names that must never reach an analytics platform, whatever a
+ * future call site passes. The guard is deliberately broader than the events
+ * this theme emits today so a later addition cannot quietly leak.
+ */
+function nsl_analytics_blocked_keys(): array {
+	return array(
+		'address', 'city', 'company', 'customer', 'customer_id', 'email', 'first_name', 'ip',
+		'last_name', 'lot', 'name', 'order_id', 'order_key', 'order_number', 'organization',
+		'phone', 'postcode', 'reference', 'role', 'sku', 'tracking', 'tracking_number',
+		'user', 'user_id', 'username',
+	);
+}
+
 /** Only scalar, non-identifying values reach the data layer. */
 function nsl_analytics_clean_params( array $params ): array {
-	$clean = array();
+	$blocked = nsl_analytics_blocked_keys();
+	$clean   = array();
+
 	foreach ( $params as $key => $value ) {
 		$key = sanitize_key( (string) $key );
-		if ( 'event' === $key || ! is_scalar( $value ) ) {
+		if ( 'event' === $key || ! is_scalar( $value ) || in_array( $key, $blocked, true ) ) {
 			continue;
 		}
+
 		if ( is_bool( $value ) ) {
 			$clean[ $key ] = $value;
 			continue;
 		}
-		$clean[ $key ] = is_numeric( $value ) ? $value + 0 : sanitize_text_field( (string) $value );
+
+		if ( is_numeric( $value ) ) {
+			$clean[ $key ] = $value + 0;
+			continue;
+		}
+
+		$text = sanitize_text_field( (string) $value );
+
+		// Anything shaped like a contact detail is dropped rather than trimmed.
+		if ( is_email( $text ) || preg_match( '/[\w.+-]+@[\w-]+\.[\w.]+/', $text ) || preg_match( '/\d{7,}/', $text ) ) {
+			continue;
+		}
+
+		$clean[ $key ] = $text;
 	}
 
 	return $clean;
