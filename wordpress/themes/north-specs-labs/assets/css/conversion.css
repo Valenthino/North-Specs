@@ -1,0 +1,68 @@
+/* North Specs Labs — free-dispatch progress on the shop, cart and checkout.
+   Forest Assay: green is rationed to action and status, so the bar is the one
+   place it appears here. Breakpoints follow the theme's 1100/900/680 ladder. */
+
+.nsl-ship-progress{
+  display:grid;
+  gap:.7rem;
+  margin:0 0 1.25rem;
+  padding:1rem 1.15rem;
+  background:var(--nsl-surface);
+  border:1px solid var(--nsl-border);
+  border-radius:12px;
+}
+.nsl-ship-progress.is-earned{background:var(--nsl-accent-soft);border-color:#bfdfcb}
+.nsl-ship-progress p{
+  display:grid;
+  grid-template-columns:20px minmax(0,1fr);
+  gap:.6rem;
+  align-items:start;
+  margin:0;
+  color:var(--nsl-copy);
+  font-size:.76rem;
+  line-height:1.5;
+}
+.nsl-ship-progress .nsl-icon{width:1.1rem;height:1.1rem;margin-top:.1rem;color:var(--nsl-accent)}
+.nsl-ship-progress strong{color:var(--nsl-ink);font-weight:700}
+.nsl-ship-progress strong .woocommerce-Price-amount{font-family:var(--nsl-mono);font-size:.86em}
+
+.nsl-ship-progress__track{
+  position:relative;
+  height:6px;
+  border-radius:999px;
+  background:#ece8dd;
+  overflow:hidden;
+}
+.nsl-ship-progress.is-earned .nsl-ship-progress__track{background:rgba(27,87,58,.18)}
+.nsl-ship-progress__track>span{
+  display:block;
+  height:100%;
+  border-radius:999px;
+  background:var(--nsl-accent);
+  transition:width .3s ease;
+}
+@media (prefers-reduced-motion:reduce){
+  .nsl-ship-progress__track>span{transition:none}
+}
+
+/* Product page: state the threshold before a cart even exists. */
+.nsl-ship-hint{
+  display:grid;
+  grid-template-columns:20px minmax(0,1fr);
+  gap:.55rem;
+  align-items:center;
+  margin:0 0 1rem;
+  padding:.7rem .85rem;
+  background:var(--nsl-accent-soft);
+  border-radius:6px;
+  color:var(--nsl-accent-dark);
+  font-size:.72rem;
+  font-weight:600;
+}
+.nsl-ship-hint .nsl-icon{width:1.05rem;height:1.05rem}
+
+@media (max-width:680px){
+  .nsl-ship-progress{padding:.9rem 1rem;margin-bottom:1rem}
+  .nsl-ship-progress p{font-size:.74rem}
+  .nsl-ship-hint{font-size:.7rem}
+}
