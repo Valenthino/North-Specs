@@ -1,0 +1,34 @@
+/* North Specs Labs — header account entrance.
+   Loaded site-wide: the header appears on every page, so these rules cannot
+   live in the account stylesheet. Breakpoints follow the theme's own
+   1100 / 900 / 680 ladder. */
+
+/* The visible label is decorative; the accessible name is always in
+   .screen-reader-text, so the label carries aria-hidden in the markup. */
+.nsl-account-link .nsl-action-label { display: none; }
+
+@media (min-width: 1101px) {
+  .nsl-header-actions .nsl-account-link { min-width: auto; padding-inline: .6rem; }
+  .nsl-account-link .nsl-action-label {
+    display: inline;
+    font-size: .72rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+}
+
+/* main.css hides the account link below 900px. A researcher on a phone needs
+   it more than anyone, so it stays reachable as an icon. */
+@media (max-width: 900px) {
+  .nsl-header-actions .nsl-account-link { display: inline-flex; }
+}
+
+/* Comfortable touch targets once the header collapses to icons only. */
+@media (max-width: 680px) {
+  .nsl-header-actions { gap: .1rem; }
+  .nsl-header-actions .nsl-icon-button { min-width: 42px; height: 42px; }
+}
+
+@media (max-width: 380px) {
+  .nsl-header-actions .nsl-icon-button { min-width: 38px; }
+}
