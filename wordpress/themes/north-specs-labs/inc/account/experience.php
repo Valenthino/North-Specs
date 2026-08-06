@@ -38,6 +38,40 @@ function nsl_account_link_data(): array {
 	);
 }
 
+/**
+ * True on any page that renders account, recovery, tracking or order views.
+ *
+ * Used to load the account stylesheet and interaction script only where they
+ * are needed rather than on every page of the catalogue.
+ */
+function nsl_is_account_surface(): bool {
+	if ( ! function_exists( 'is_account_page' ) ) {
+		return false;
+	}
+
+	return is_account_page()
+		|| is_order_received_page()
+		|| is_page( 'track-order' )
+		|| (bool) get_query_var( 'nsl_order_receipt' );
+}
+
+/**
+ * Flush rewrite rules once per theme version so the batch-documents endpoint
+ * and the /order-receipt/{id}/ route resolve without a manual permalink save.
+ */
+add_action(
+	'init',
+	function (): void {
+		if ( NSL_THEME_VERSION === get_option( 'nsl_account_rewrite_version' ) ) {
+			return;
+		}
+
+		flush_rewrite_rules( false );
+		update_option( 'nsl_account_rewrite_version', NSL_THEME_VERSION, false );
+	},
+	99
+);
+
 /** The benefits of holding a researcher account, used on the sign-in page. */
 function nsl_account_benefits(): array {
 	return array(
