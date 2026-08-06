@@ -4,15 +4,8 @@
 
 .nsl-mono{font-family:var(--nsl-mono);font-size:.78rem;letter-spacing:.02em}
 
-/* ---------- Header account control ---------- */
-.nsl-account-link .nsl-action-label{display:none}
-@media (min-width:1100px){
-  .nsl-header-actions .nsl-account-link{padding-inline:.65rem}
-  .nsl-account-link .nsl-action-label{display:inline;font-size:.72rem;font-weight:700;white-space:nowrap}
-}
-@media (max-width:1023px){
-  .nsl-header-actions .nsl-account-link{display:inline-flex}
-}
+/* Header account entrance lives in header-account.css: those rules must load
+   site-wide, not only on account surfaces. */
 
 /* ---------- Status badges ---------- */
 .nsl-status-badge{display:inline-block;padding:.35rem .6rem;border-radius:999px;background:var(--nsl-accent-soft);color:var(--nsl-accent-dark);font-size:.58rem;font-weight:700;letter-spacing:.02em;white-space:nowrap}
@@ -263,38 +256,116 @@
 .nsl-turnstile{margin:0 0 1rem}
 .nsl-2fa-field small{display:block;margin-top:.3rem;color:var(--nsl-copy);font-size:.64rem}
 
-/* ---------- Responsive ---------- */
-@media (max-width:1080px){
+/* ---------- Responsive ----------
+   Breakpoints follow the theme's own ladder: 1100 / 900 / 680. Anything that
+   scrolls sideways is contained rather than allowed to widen the page. */
+
+@media (max-width:1100px){
   .nsl-workspace-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .nsl-workspace-card--wide{grid-column:span 2}
   .nsl-signin__layout,.nsl-recovery,.nsl-track-layout{grid-template-columns:1fr}
   .nsl-signin-benefits,.nsl-track-aside{position:static}
   .nsl-product-grid--compact{grid-template-columns:repeat(2,minmax(0,1fr))}
   .nsl-orders-filter{grid-template-columns:1fr 1fr}
-  .nsl-orders-filter__actions{grid-column:1/-1}
+  .nsl-orders-filter__actions{grid-column:1/-1;justify-content:flex-start}
+  /* The four-stage timeline stays horizontal here, but the per-stage note
+     would be three words per line, so it is dropped rather than squeezed. */
+  .nsl-order-timeline li small{display:none}
 }
-@media (max-width:780px){
-  .nsl-workspace__intro{grid-template-columns:1fr}
-  .nsl-workspace__stats{flex-wrap:wrap;gap:1rem 0}
+
+@media (max-width:900px){
+  .nsl-workspace__intro{grid-template-columns:1fr;gap:1.4rem;padding:1.4rem}
+  .nsl-workspace__intro h2{font-size:1.7rem}
+  .nsl-workspace__stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
   .nsl-workspace-grid{grid-template-columns:1fr}
   .nsl-workspace-card--wide{grid-column:auto}
-  .nsl-order-row{grid-template-columns:1fr;gap:1rem}
-  .nsl-order-row__side{align-items:flex-start;text-align:left}
+
+  .nsl-order-row{grid-template-columns:1fr;gap:1rem;padding:1.1rem}
+  .nsl-order-row__side{align-items:stretch;text-align:left}
+  .nsl-order-row__total{padding-top:.8rem;border-top:1px solid var(--nsl-border)}
   .nsl-order-actions{justify-content:flex-start}
-  .nsl-order-timeline ol{grid-template-columns:1fr;gap:.2rem}
-  .nsl-order-timeline li{justify-items:start;text-align:left;padding:0}
-  .nsl-order-timeline li small{max-width:none}
-  .nsl-batch-record dl{grid-template-columns:1fr 1fr;gap:.9rem}
-  .nsl-batch-record dl>div{padding:0;border-left:0}
+  .nsl-order-detail-actions{flex-direction:column;align-items:stretch;gap:.9rem}
+  .nsl-order-detail-actions .nsl-text-link{align-self:flex-start}
+
+  .nsl-batch-record dl{grid-template-columns:1fr 1fr;gap:.9rem 0}
+  .nsl-batch-record dl>div{padding:0 .7rem 0 0;border-left:0}
+
   .nsl-signin-alt,.nsl-tracking-form__fields{grid-template-columns:1fr}
-  .nsl-tracking-signin{grid-template-columns:1fr;gap:.8rem}
+  .nsl-tracking-signin{grid-template-columns:1fr;gap:.9rem}
   .nsl-tracking-signin .nsl-button{width:100%}
-  .nsl-orders-filter{grid-template-columns:1fr}
-  .nsl-order-detail-actions{flex-direction:column;align-items:flex-start}
+  .nsl-signin-panel,.nsl-recovery__form,.nsl-tracking-form{padding:1.2rem}
+
+  /* Every control the thumb has to hit gets a full-size target. */
+  .nsl-order-actions .nsl-button{min-height:46px!important;padding:.6rem .85rem!important;font-size:.72rem!important}
+  .nsl-orders-filter input,.nsl-orders-filter select{height:48px;font-size:16px}
+  .nsl-orders-filter__actions .nsl-button{min-height:48px!important;flex:1 1 auto}
 }
-@media (max-width:520px){
-  .nsl-workspace__stats>div{padding:0 .8rem}
-  .nsl-workspace__stats dd{font-size:1.4rem}
-  .nsl-order-actions .nsl-button{flex:1 1 calc(50% - .2rem)}
+
+@media (max-width:680px){
+  .nsl-workspace__intro{padding:1.15rem}
+  .nsl-workspace__stats{grid-template-columns:1fr;gap:0}
+  .nsl-workspace__stats>div{padding:.7rem 0;border-left:0;border-top:1px solid var(--nsl-border-dark);display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+  .nsl-workspace__stats>div:first-child{padding-top:0;border-top:0}
+  .nsl-workspace__stats dd{font-size:1.35rem}
+
+  .nsl-workspace-notice{grid-template-columns:1fr;gap:.7rem;padding:1.1rem}
+  .nsl-workspace-notice li{align-items:flex-start;flex-direction:column;gap:.25rem}
+  .nsl-workspace-notice li .nsl-text-link{margin-left:0;margin-top:.2rem}
+
+  .nsl-workspace-card,.nsl-workspace-reorder,.nsl-workspace-empty-panel,.nsl-batch-record{padding:1.1rem}
+  .nsl-workspace-empty-panel{padding:1.4rem}
+  .nsl-orders__head h2,.nsl-workspace-empty-panel h3{font-size:1.5rem}
+
+  .nsl-orders-filter{grid-template-columns:1fr;padding:1rem}
+  .nsl-orders-filter__actions .nsl-button{width:100%}
+
+  .nsl-order-row__head{gap:.5rem}
+  .nsl-order-row__items{gap:.3rem}
+  .nsl-order-row__items li{padding-right:0;border-right:0;flex:1 1 100%}
+  /* Two per row keeps every action reachable without a cramped four-up strip. */
+  .nsl-order-actions{display:grid;grid-template-columns:1fr 1fr;gap:.45rem}
+  .nsl-order-actions .nsl-button{width:100%}
+
+  /* Vertical timeline: circle in a rail, text stacked beside it. */
+  .nsl-order-timeline{padding:1.1rem}
+  .nsl-order-timeline__head{align-items:flex-start;flex-direction:column;gap:.6rem}
+  .nsl-order-timeline ol{grid-template-columns:1fr;gap:0}
+  .nsl-order-timeline li{grid-template-columns:29px minmax(0,1fr);column-gap:.75rem;justify-items:start;align-items:start;min-height:0;padding:0 0 1.15rem;text-align:left}
+  .nsl-order-timeline li:last-child{padding-bottom:0}
+  .nsl-order-timeline li>span{grid-column:1;grid-row:1/span 3}
+  .nsl-order-timeline li strong,.nsl-order-timeline li time,.nsl-order-timeline li small{grid-column:2}
+  .nsl-order-timeline li small{display:block;max-width:none}
+  .nsl-order-timeline li::before{top:29px;left:14px;right:auto;width:1px;height:calc(100% - 29px)}
+  .nsl-order-timeline li:first-child::before{display:block}
+  .nsl-order-timeline li:last-child::before{display:none}
+
+  .nsl-order-tracking__item{align-items:stretch;flex-direction:column;gap:.7rem}
+  .nsl-order-tracking__item .nsl-button{width:100%}
+
+  .nsl-batch-record header{align-items:flex-start;flex-direction:column;gap:.6rem}
+  .nsl-batch-record h4{font-size:1.05rem;word-break:break-word}
+  .nsl-batch-record dl{grid-template-columns:1fr;gap:.8rem}
+  .nsl-batch-record .nsl-button{width:100%}
+
+  .nsl-signin__intro h1{font-size:clamp(1.9rem,7vw,2.4rem)}
+  .nsl-signin-panel h2,.nsl-recovery header h1{font-size:1.4rem}
+  .nsl-signin-panel__submit{align-items:stretch;flex-direction:column-reverse;gap:.9rem}
+  .nsl-signin-panel__submit .nsl-button{width:100%}
+  .nsl-recovery__form .nsl-button,.nsl-tracking-form .nsl-button,.nsl-recovery__next .nsl-button{width:100%}
+  .nsl-recovery__next .nsl-button-group{align-items:stretch;flex-direction:column;gap:.8rem}
+  .nsl-recovery__next .nsl-text-link{justify-content:center}
+  .nsl-signin-benefits,.nsl-recovery__aside,.nsl-track-aside,.nsl-tracking-help{padding:1.2rem}
+
+  /* 16px avoids the iOS zoom-on-focus jump. */
+  .nsl-signin-panel input,.nsl-signin-panel select,.nsl-recovery__form input,.nsl-tracking-form input{font-size:16px}
+
   .nsl-product-grid--compact{grid-template-columns:1fr 1fr;gap:.55rem}
+  .nsl-order-detail__head{align-items:flex-start;flex-direction:column;gap:.6rem}
+  .nsl-orders-pagination{gap:.6rem}
+  .nsl-orders-pagination .nsl-button{min-height:44px!important}
+}
+
+@media (max-width:400px){
+  .nsl-order-actions{grid-template-columns:1fr}
+  .nsl-product-grid--compact{grid-template-columns:1fr}
 }

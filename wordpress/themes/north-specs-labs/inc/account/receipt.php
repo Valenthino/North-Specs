@@ -145,7 +145,19 @@ function nsl_render_order_receipt( WC_Order $order ): void {
 		.actions a,.actions button{display:inline-flex;align-items:center;min-height:42px;padding:10px 16px;border:1px solid var(--accent);border-radius:6px;background:var(--accent);color:#fff;font:700 13px/1 "Public Sans",Arial,sans-serif;text-decoration:none;cursor:pointer}
 		.actions a.secondary{background:transparent;color:var(--accent)}
 		@media print{body{padding:0;background:#fff}.sheet{max-width:none;border:0;border-radius:0;padding:0}.actions{display:none}}
-		@media (max-width:640px){.sheet{padding:20px}.summary{grid-template-columns:1fr 1fr}.summary div:nth-child(3){border-left:0}.parties{grid-template-columns:1fr}header.masthead{flex-direction:column}.doc-type{text-align:left}}
+		@media (max-width:640px){
+			body{padding:16px 12px 40px}
+			.sheet{padding:20px}
+			.summary{grid-template-columns:1fr 1fr}
+			.summary div:nth-child(3){border-left:0}
+			.parties{grid-template-columns:1fr;gap:18px}
+			header.masthead{flex-direction:column;gap:14px}
+			.doc-type{text-align:left}
+			.actions{flex-direction:column}
+			.actions a,.actions button{width:100%;justify-content:center;min-height:46px}
+			th,td{padding:9px 6px;font-size:12px}
+		}
+		@media (max-width:400px){.summary{grid-template-columns:1fr}.summary div{border-left:0;border-top:1px solid var(--border)}.summary div:first-child{border-top:0}}
 	</style>
 </head>
 <body>
