@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NSL_THEME_VERSION', '1.5.0' );
+define( 'NSL_THEME_VERSION', '1.6.0' );
 define( 'NSL_THEME_DIR', get_template_directory() );
 define( 'NSL_THEME_URI', get_template_directory_uri() );
 
@@ -30,6 +30,12 @@ require_once NSL_THEME_DIR . '/inc/account/experience.php';
 require_once NSL_THEME_DIR . '/inc/account/receipt.php';
 require_once NSL_THEME_DIR . '/inc/account/security.php';
 
+// Conversion: measurement first, since the other two record through it.
+require_once NSL_THEME_DIR . '/inc/growth/measurement.php';
+require_once NSL_THEME_DIR . '/inc/growth/shipping.php';
+require_once NSL_THEME_DIR . '/inc/growth/lifecycle.php';
+
 if ( is_admin() ) {
 	require_once NSL_THEME_DIR . '/inc/account/admin.php';
+	require_once NSL_THEME_DIR . '/inc/growth/dashboard.php';
 }
