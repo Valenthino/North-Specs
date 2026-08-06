@@ -7,6 +7,26 @@
 /* Header account entrance lives in header-account.css: those rules must load
    site-wide, not only on account surfaces. */
 
+/* ---------- Account page shell ----------
+   The stacked account grid gives its children an implicit min-width of auto,
+   so the horizontally scrolling nav stretched the whole page instead of
+   scrolling inside itself. Six endpoints with descriptive labels made it
+   push a 360px viewport out to 505px. */
+.woocommerce-account .woocommerce-MyAccount-navigation,
+.woocommerce-account .woocommerce-MyAccount-content{min-width:0;max-width:100%}
+
+@media (max-width:900px){
+  .woocommerce-account .woocommerce-MyAccount-navigation ul{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+  .woocommerce-account .woocommerce-MyAccount-navigation li{flex:0 0 auto}
+  .woocommerce-account .woocommerce-MyAccount-navigation a{white-space:nowrap;min-height:44px;display:flex;align-items:center}
+}
+
 /* ---------- Status badges ---------- */
 .nsl-status-badge{display:inline-block;padding:.35rem .6rem;border-radius:999px;background:var(--nsl-accent-soft);color:var(--nsl-accent-dark);font-size:.58rem;font-weight:700;letter-spacing:.02em;white-space:nowrap}
 .nsl-status-badge--warning{background:#f4ead6;color:var(--nsl-warning)}
@@ -316,8 +336,11 @@
   .nsl-workspace-empty-panel{padding:1.4rem}
   .nsl-orders__head h2,.nsl-workspace-empty-panel h3{font-size:1.5rem}
 
-  .nsl-orders-filter{grid-template-columns:1fr;padding:1rem}
-  .nsl-orders-filter__actions .nsl-button{width:100%}
+  /* Search and status get a full row each; the two short date fields pair up
+     rather than adding two more full-height rows to the form. */
+  .nsl-orders-filter{grid-template-columns:1fr 1fr;padding:1rem}
+  .nsl-orders-filter label:nth-child(1),.nsl-orders-filter label:nth-child(2){grid-column:1/-1}
+  .nsl-orders-filter__actions .nsl-button{width:auto}
 
   .nsl-order-row__head{gap:.5rem}
   .nsl-order-row__items{gap:.3rem}
@@ -342,6 +365,13 @@
   .nsl-order-tracking__item{align-items:stretch;flex-direction:column;gap:.7rem}
   .nsl-order-tracking__item .nsl-button{width:100%}
 
+  /* Once these panels stack, a lone decorative icon just adds an empty row. */
+  .nsl-tracking-signin{grid-template-columns:1fr}
+  .nsl-tracking-signin>.nsl-icon{display:none}
+
+  /* The label is the real tap target for the checkbox beside it. */
+  .nsl-signin-panel__submit label{min-height:44px}
+
   .nsl-batch-record header{align-items:flex-start;flex-direction:column;gap:.6rem}
   .nsl-batch-record h4{font-size:1.05rem;word-break:break-word}
   .nsl-batch-record dl{grid-template-columns:1fr;gap:.8rem}
@@ -365,7 +395,10 @@
   .nsl-orders-pagination .nsl-button{min-height:44px!important}
 }
 
-@media (max-width:400px){
+/* Only the narrowest handsets drop to one action per row; at 390px a two-up
+   grid still fits "Complete payment" without wrapping. */
+@media (max-width:360px){
   .nsl-order-actions{grid-template-columns:1fr}
+  .nsl-orders-filter{grid-template-columns:1fr}
   .nsl-product-grid--compact{grid-template-columns:1fr}
 }
