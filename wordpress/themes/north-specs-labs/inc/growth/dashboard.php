@@ -147,7 +147,7 @@ function nsl_render_conversion_dashboard(): void {
 							</label>
 						<?php endforeach; ?>
 						<p class="description">
-							<?php esc_html_e( 'Sent only to signed-in researchers with an existing order relationship, never to anonymous visitors, and every message carries a one-click opt-out. This is what keeps the reminders on the right side of Canada anti-spam law.', 'north-specs-labs' ); ?>
+							<?php esc_html_e( 'Sent only to signed-in researchers with an existing order relationship, never to anonymous visitors, and every message carries a one-click opt-out. This is what keeps the reminders on the right side of Canadian anti-spam law.', 'north-specs-labs' ); ?>
 						</p>
 					</td>
 				</tr>
