@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NSL_THEME_VERSION', '1.7.0' );
+define( 'NSL_THEME_VERSION', '1.8.0' );
 define( 'NSL_THEME_DIR', get_template_directory() );
 define( 'NSL_THEME_URI', get_template_directory_uri() );
 
@@ -35,6 +35,7 @@ require_once NSL_THEME_DIR . '/inc/checkout/gateways.php';
 require_once NSL_THEME_DIR . '/inc/checkout/flow.php';
 require_once NSL_THEME_DIR . '/inc/checkout/address.php';
 require_once NSL_THEME_DIR . '/inc/checkout/identity.php';
+require_once NSL_THEME_DIR . '/inc/checkout/badges.php';
 
 // Affiliate and referral programme.
 require_once NSL_THEME_DIR . '/inc/affiliates.php';
