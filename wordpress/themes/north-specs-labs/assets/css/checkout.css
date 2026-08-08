@@ -355,3 +355,44 @@
 .nsl-shipping-fields #ship-to-different-address-checkbox {
 	display: none;
 }
+
+/* ------------------------------------------------- accepted payment marks */
+
+.nsl-marks {
+	margin: 18px 0 0;
+}
+
+.nsl-marks__heading {
+	margin: 0 0 10px;
+	color: var(--nsl-muted);
+	font-size: .76rem;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+}
+
+.nsl-marks__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.nsl-marks__item {
+	margin: 0;
+	padding: 0;
+	line-height: 0;
+}
+
+.nsl-marks__art svg {
+	display: block;
+	width: 46px;
+	height: auto;
+}
+
+@media (max-width: 480px) {
+	.nsl-marks__art svg {
+		width: 40px;
+	}
+}
