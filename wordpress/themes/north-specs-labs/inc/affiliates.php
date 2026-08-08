@@ -29,12 +29,20 @@ function nsl_affiliate_helper() {
 
 	$class = 'DDWCAffiliates\\Helper\\Affiliate\\DDWCAF_Affiliate_Helper';
 
-	if ( ! class_exists( $class ) ) {
+	// The helper needs the plugin's configuration array, which the plugin
+	// publishes as a global once it has booted.
+	$configuration = $GLOBALS['ddwcaf_configuration'] ?? null;
+
+	if ( ! class_exists( $class ) || ! is_array( $configuration ) ) {
 		$helper = null;
 		return $helper;
 	}
 
-	$helper = method_exists( $class, 'get_instance' ) ? $class::get_instance() : new $class();
+	try {
+		$helper = new $class( $configuration );
+	} catch ( \Throwable $e ) {
+		$helper = null;
+	}
 
 	return $helper;
 }
@@ -119,7 +127,7 @@ function nsl_referral_stats( int $user_id ): array {
 add_action(
 	'init',
 	function (): void {
-		if ( '1.0.0' === get_option( 'nsl_affiliates_version' ) ) {
+		if ( '1.1.0' === get_option( 'nsl_affiliates_version' ) ) {
 			return;
 		}
 
@@ -134,7 +142,10 @@ add_action(
 		// "ref" is shorter to share and to say out loud than "referral".
 		update_option( '_ddwcaf_query_variable_name', 'ref' );
 
-		update_option( 'nsl_affiliates_version', '1.0.0', false );
+		// The plugin ships a blue accent; the site has exactly one accent.
+		update_option( '_ddwcaf_primary_color', '#1b573a' );
+
+		update_option( 'nsl_affiliates_version', '1.1.0', false );
 	},
 	25
 );
@@ -162,21 +173,32 @@ add_action(
 	20
 );
 
-/** A "Referrals" tab in the researcher account. */
+/**
+ * The account endpoint the affiliate plugin owns, e.g. "affiliate-dashboard".
+ */
+function nsl_affiliate_endpoint(): string {
+	$configuration = $GLOBALS['ddwcaf_configuration'] ?? array();
+
+	return (string) ( $configuration['my_account_endpoint'] ?? 'affiliate-dashboard' );
+}
+
+/**
+ * Give the affiliate account tab a plain-language name.
+ *
+ * The plugin's own dashboard stays exactly where it is; only the label in the
+ * account navigation changes, so a researcher who has never heard the word
+ * "affiliate" still recognises what the tab is for.
+ *
+ * @param array<string,string> $items Account menu items.
+ * @return array<string,string>
+ */
 add_filter(
 	'woocommerce_account_menu_items',
 	function ( array $items ): array {
-		if ( ! nsl_affiliate_helper() ) {
-			return $items;
-		}
+		$endpoint = nsl_affiliate_endpoint();
 
-		$logout = $items['customer-logout'] ?? null;
-		unset( $items['customer-logout'] );
-
-		$items['nsl-referrals'] = __( 'Referrals', 'north-specs-labs' );
-
-		if ( $logout ) {
-			$items['customer-logout'] = $logout;
+		if ( isset( $items[ $endpoint ] ) ) {
+			$items[ $endpoint ] = __( 'Refer a researcher', 'north-specs-labs' );
 		}
 
 		return $items;
@@ -184,25 +206,29 @@ add_filter(
 	20
 );
 
+/**
+ * Lead the affiliate tab with the referral link, the figures that matter and a
+ * plain explanation, then let the plugin render its full dashboard beneath.
+ */
 add_action(
 	'init',
 	function (): void {
-		add_rewrite_endpoint( 'nsl-referrals', EP_ROOT | EP_PAGES );
-	}
-);
+		add_action(
+			'woocommerce_account_' . nsl_affiliate_endpoint() . '_endpoint',
+			function (): void {
+				$user_id = get_current_user_id();
 
-add_action(
-	'woocommerce_account_nsl-referrals_endpoint',
-	function (): void {
-		$user_id = get_current_user_id();
+				if ( nsl_is_affiliate( $user_id ) ) {
+					nsl_render_referral_panel( $user_id );
+					return;
+				}
 
-		if ( nsl_is_affiliate( $user_id ) ) {
-			nsl_render_referral_panel( $user_id );
-			return;
-		}
-
-		nsl_render_referral_invitation();
-	}
+				nsl_render_referral_invitation();
+			},
+			5
+		);
+	},
+	30
 );
 
 /**
@@ -343,16 +369,31 @@ add_action(
 	}
 );
 
-/** Flush the referral endpoint once, when the theme version moves. */
+/**
+ * Credit the referring researcher's own account page too.
+ *
+ * A researcher who lands on the account dashboard sees the programme once,
+ * rather than only discovering it if they open the tab.
+ */
 add_action(
-	'init',
+	'woocommerce_account_dashboard',
 	function (): void {
-		if ( NSL_THEME_VERSION === get_option( 'nsl_affiliate_rewrite_version' ) ) {
+		if ( ! nsl_affiliate_helper() || ! nsl_is_affiliate() ) {
 			return;
 		}
 
-		flush_rewrite_rules( false );
-		update_option( 'nsl_affiliate_rewrite_version', NSL_THEME_VERSION, false );
+		$link = nsl_referral_url();
+
+		if ( ! $link ) {
+			return;
+		}
+
+		printf(
+			'<p class="nsl-referral__nudge">%1$s <a href="%2$s">%3$s</a></p>',
+			esc_html__( 'Your referral link is ready to share.', 'north-specs-labs' ),
+			esc_url( wc_get_account_endpoint_url( nsl_affiliate_endpoint() ) ),
+			esc_html__( 'Open referrals', 'north-specs-labs' )
+		);
 	},
-	99
+	20
 );
