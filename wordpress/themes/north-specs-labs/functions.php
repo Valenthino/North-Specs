@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NSL_THEME_VERSION', '1.6.0' );
+define( 'NSL_THEME_VERSION', '1.7.0' );
 define( 'NSL_THEME_DIR', get_template_directory() );
 define( 'NSL_THEME_URI', get_template_directory_uri() );
 
@@ -29,6 +29,15 @@ require_once NSL_THEME_DIR . '/inc/account/shipments.php';
 require_once NSL_THEME_DIR . '/inc/account/experience.php';
 require_once NSL_THEME_DIR . '/inc/account/receipt.php';
 require_once NSL_THEME_DIR . '/inc/account/security.php';
+
+// Checkout: payment lineup, staged flow and address assistance.
+require_once NSL_THEME_DIR . '/inc/checkout/gateways.php';
+require_once NSL_THEME_DIR . '/inc/checkout/flow.php';
+require_once NSL_THEME_DIR . '/inc/checkout/address.php';
+require_once NSL_THEME_DIR . '/inc/checkout/identity.php';
+
+// Affiliate and referral programme.
+require_once NSL_THEME_DIR . '/inc/affiliates.php';
 
 // Conversion: measurement first, since the other two record through it.
 require_once NSL_THEME_DIR . '/inc/growth/measurement.php';

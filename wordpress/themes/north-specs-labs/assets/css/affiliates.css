@@ -1,0 +1,262 @@
+/**
+ * Affiliate and referral surfaces.
+ *
+ * Gives the plugin's own dashboard markup the Forest Assay language: bone
+ * ground, hairline separation, one forest accent, mono for figures only.
+ */
+
+/* ------------------------------------------------------------- referrals */
+
+.nsl-referral {
+	max-width: 62rem;
+}
+
+.nsl-referral__head h2 {
+	margin: 0 0 8px;
+	font-family: var(--nsl-heading);
+	font-size: clamp(1.35rem, 1.1rem + .9vw, 1.7rem);
+	font-weight: 700;
+	line-height: 1.1;
+}
+
+.nsl-referral__head p {
+	max-width: 60ch;
+	margin: 0 0 28px;
+	color: var(--nsl-copy);
+}
+
+.nsl-referral__link {
+	margin: 0 0 28px;
+	padding: 20px;
+	border: 1px solid var(--nsl-border);
+	border-radius: 12px;
+	background: var(--nsl-surface);
+	box-shadow: var(--nsl-shadow-sm);
+}
+
+.nsl-referral__link label {
+	display: block;
+	margin-bottom: 8px;
+	color: var(--nsl-muted);
+	font-size: .78rem;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+}
+
+.nsl-referral__copy {
+	display: flex;
+	gap: 8px;
+}
+
+.nsl-referral__copy input {
+	flex: 1 1 auto;
+	min-width: 0;
+	padding: 11px 13px;
+	border: 1px solid var(--nsl-border);
+	border-radius: 6px;
+	background: var(--nsl-bg);
+	color: var(--nsl-ink);
+	font-family: var(--nsl-mono);
+	font-size: .88rem;
+}
+
+.nsl-referral__copy input:focus {
+	border-color: var(--nsl-accent);
+	outline: 2px solid var(--nsl-accent-soft);
+	outline-offset: 1px;
+}
+
+.nsl-referral__button {
+	flex: 0 0 auto;
+	padding: 11px 22px;
+	border: 0;
+	border-radius: 6px;
+	background: var(--nsl-accent);
+	color: #fff;
+	font-family: var(--nsl-body);
+	font-weight: 600;
+	cursor: pointer;
+	transition: background .2s ease;
+}
+
+.nsl-referral__button:hover,
+.nsl-referral__button:focus-visible {
+	background: var(--nsl-accent-dark);
+}
+
+.nsl-referral__button.is-copied {
+	background: var(--nsl-accent-dark);
+}
+
+/* ----------------------------------------------------------------- stats */
+
+.nsl-referral__stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 1px;
+	margin: 0 0 28px;
+	padding: 0;
+	border: 1px solid var(--nsl-border);
+	border-radius: 12px;
+	overflow: hidden;
+	background: var(--nsl-border);
+}
+
+.nsl-referral__stats > div {
+	margin: 0;
+	padding: 18px 20px;
+	background: var(--nsl-surface);
+}
+
+.nsl-referral__stats dt {
+	margin: 0 0 6px;
+	color: var(--nsl-muted);
+	font-size: .76rem;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+}
+
+.nsl-referral__stats dd {
+	margin: 0;
+	color: var(--nsl-ink);
+	font-family: var(--nsl-mono);
+	font-size: 1.3rem;
+	font-weight: 500;
+	line-height: 1.1;
+}
+
+.nsl-referral__stats dd .amount {
+	font-family: var(--nsl-mono);
+}
+
+/* ---------------------------------------------------------------- invite */
+
+.nsl-referral__points {
+	margin: 0 0 28px;
+	padding: 0;
+	list-style: none;
+}
+
+.nsl-referral__points li {
+	position: relative;
+	padding: 12px 0 12px 26px;
+	border-bottom: 1px solid var(--nsl-border);
+	color: var(--nsl-copy);
+}
+
+.nsl-referral__points li::before {
+	position: absolute;
+	top: 12px;
+	left: 0;
+	color: var(--nsl-accent);
+	content: "—";
+}
+
+.nsl-button {
+	display: inline-block;
+	padding: 13px 28px;
+	border: 0;
+	border-radius: 6px;
+	background: var(--nsl-accent);
+	color: #fff;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.nsl-button:hover,
+.nsl-button:focus-visible {
+	background: var(--nsl-accent-dark);
+	color: #fff;
+}
+
+.nsl-button--secondary {
+	border: 1px solid var(--nsl-accent);
+	background: transparent;
+	color: var(--nsl-accent-dark);
+}
+
+.nsl-button--secondary:hover,
+.nsl-button--secondary:focus-visible {
+	background: var(--nsl-accent-soft);
+	color: var(--nsl-accent-dark);
+}
+
+/* --------------------------------------- plugin dashboard, re-skinned */
+
+.ddwcaf-affiliate-dashboard,
+.ddwcaf-dashboard-wrapper {
+	font-family: var(--nsl-body);
+	color: var(--nsl-ink);
+}
+
+.ddwcaf-affiliate-dashboard h1,
+.ddwcaf-affiliate-dashboard h2,
+.ddwcaf-affiliate-dashboard h3 {
+	font-family: var(--nsl-heading);
+	font-weight: 700;
+	line-height: 1.12;
+}
+
+.ddwcaf-affiliate-dashboard table {
+	width: 100%;
+	border-collapse: collapse;
+	background: var(--nsl-surface);
+}
+
+.ddwcaf-affiliate-dashboard th,
+.ddwcaf-affiliate-dashboard td {
+	padding: 12px 14px;
+	border-bottom: 1px solid var(--nsl-border);
+	text-align: left;
+}
+
+.ddwcaf-affiliate-dashboard th {
+	color: var(--nsl-muted);
+	font-size: .78rem;
+	font-weight: 600;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+}
+
+.ddwcaf-affiliate-dashboard td {
+	font-variant-numeric: tabular-nums;
+}
+
+.ddwcaf-affiliate-dashboard input[type="text"],
+.ddwcaf-affiliate-dashboard input[type="email"],
+.ddwcaf-affiliate-dashboard input[type="url"],
+.ddwcaf-affiliate-dashboard select,
+.ddwcaf-affiliate-dashboard textarea {
+	padding: 11px 13px;
+	border: 1px solid var(--nsl-border);
+	border-radius: 6px;
+	background: var(--nsl-surface);
+	font-family: var(--nsl-body);
+}
+
+.ddwcaf-affiliate-dashboard input:focus,
+.ddwcaf-affiliate-dashboard select:focus,
+.ddwcaf-affiliate-dashboard textarea:focus {
+	border-color: var(--nsl-accent);
+	outline: 2px solid var(--nsl-accent-soft);
+	outline-offset: 1px;
+}
+
+.ddwcaf-affiliate-dashboard .button,
+.ddwcaf-affiliate-dashboard button[type="submit"],
+.ddwcaf-affiliate-dashboard input[type="submit"] {
+	padding: 12px 26px;
+	border: 0;
+	border-radius: 6px;
+	background: var(--nsl-accent);
+	color: #fff;
+	font-family: var(--nsl-body);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.ddwcaf-affiliate-dashboard .button:hover,
+.ddwcaf-affiliate-dashboard button[type="submit"]:hover,
+.ddwcaf-affiliate-dashboard input[type="submit"]:hover {
+	background: var(--nsl-accent-dark);
+}
