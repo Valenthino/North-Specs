@@ -1,0 +1,231 @@
+/**
+ * Sign-in, sign-up and guest identity surfaces.
+ *
+ * The provider button keeps its own brand mark, as Google's terms require, but
+ * sits inside the site's spacing, radius and hairline language.
+ */
+
+/* --------------------------------------------------- provider buttons */
+
+.nsl-identity {
+	margin: 0 0 24px;
+}
+
+.nsl-identity__buttons div.nsl-container {
+	margin: 0;
+}
+
+.nsl-identity__buttons div.nsl-container .nsl-button {
+	border-radius: 6px;
+}
+
+.nsl-identity__divider {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 20px 0 0;
+	color: var(--nsl-muted);
+	font-size: .82rem;
+}
+
+.nsl-identity__divider::before,
+.nsl-identity__divider::after {
+	flex: 1 1 auto;
+	height: 1px;
+	background: var(--nsl-border);
+	content: "";
+}
+
+/* ------------------------------------------------ checkout identity band */
+
+.nsl-identity-band {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px 24px;
+	margin: 0 0 28px;
+	padding: 18px 22px;
+	border: 1px solid var(--nsl-border);
+	border-radius: 12px;
+	background: var(--nsl-surface);
+}
+
+.nsl-identity-band__intro h2 {
+	margin: 0 0 4px;
+	font-family: var(--nsl-heading);
+	font-size: 1.05rem;
+	font-weight: 700;
+}
+
+.nsl-identity-band__intro p {
+	max-width: 58ch;
+	margin: 0;
+	color: var(--nsl-copy);
+	font-size: .92rem;
+}
+
+.nsl-identity-band__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 14px;
+}
+
+.nsl-identity-band__link {
+	color: var(--nsl-accent-dark);
+	font-size: .92rem;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+/* ----------------------------------------------------- post-order offer */
+
+.nsl-identity-after {
+	max-width: 62rem;
+	margin: 40px 0 0;
+	padding: 26px 28px;
+	border: 1px solid var(--nsl-border);
+	border-radius: 12px;
+	background: var(--nsl-surface);
+	box-shadow: var(--nsl-shadow-sm);
+}
+
+.nsl-identity-after h2 {
+	margin: 0 0 8px;
+	font-family: var(--nsl-heading);
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.nsl-identity-after p {
+	max-width: 60ch;
+	margin: 0 0 18px;
+	color: var(--nsl-copy);
+}
+
+/* ------------------------------------------------------- account page */
+
+.nsl-create-account {
+	display: grid;
+	grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+	gap: 48px;
+	align-items: start;
+	max-width: 68rem;
+}
+
+@media (max-width: 860px) {
+	.nsl-create-account {
+		grid-template-columns: 1fr;
+		gap: 32px;
+	}
+}
+
+.nsl-create-account__form .form-row {
+	margin: 0 0 18px;
+}
+
+.nsl-create-account__form label {
+	display: block;
+	margin-bottom: 6px;
+	font-weight: 500;
+}
+
+.nsl-create-account__form input[type="email"],
+.nsl-create-account__form input[type="password"],
+.nsl-create-account__form input[type="text"] {
+	width: 100%;
+	padding: 12px 14px;
+	border: 1px solid var(--nsl-border);
+	border-radius: 6px;
+	background: var(--nsl-surface);
+	color: var(--nsl-ink);
+	font-family: var(--nsl-body);
+	font-size: 1rem;
+}
+
+.nsl-create-account__form input:focus {
+	border-color: var(--nsl-accent);
+	outline: 2px solid var(--nsl-accent-soft);
+	outline-offset: 1px;
+}
+
+.nsl-create-account__hint {
+	display: block;
+	margin-top: 5px;
+	color: var(--nsl-muted);
+	font-size: .84rem;
+}
+
+.nsl-create-account__form button {
+	width: 100%;
+	padding: 14px 28px;
+	border: 0;
+	border-radius: 6px;
+	background: var(--nsl-accent);
+	color: #fff;
+	font-family: var(--nsl-body);
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.nsl-create-account__form button:hover,
+.nsl-create-account__form button:focus-visible {
+	background: var(--nsl-accent-dark);
+}
+
+.nsl-create-account__signin {
+	margin: 20px 0 0;
+	color: var(--nsl-copy);
+	font-size: .93rem;
+}
+
+.nsl-create-account__aside {
+	padding: 26px 28px;
+	border: 1px solid var(--nsl-border);
+	border-radius: 12px;
+	background: var(--nsl-surface);
+}
+
+.nsl-create-account__aside h2 {
+	margin: 0 0 16px;
+	font-family: var(--nsl-heading);
+	font-size: 1.05rem;
+	font-weight: 700;
+}
+
+.nsl-create-account__aside ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.nsl-create-account__aside li {
+	position: relative;
+	padding: 11px 0 11px 24px;
+	border-bottom: 1px solid var(--nsl-border);
+	color: var(--nsl-copy);
+	font-size: .93rem;
+}
+
+.nsl-create-account__aside li::before {
+	position: absolute;
+	top: 11px;
+	left: 0;
+	color: var(--nsl-accent);
+	content: "—";
+}
+
+.nsl-create-account__note {
+	margin: 18px 0 0;
+	color: var(--nsl-muted);
+	font-size: .86rem;
+}
+
+.nsl-referral__nudge {
+	padding: 14px 18px;
+	border-left: 2px solid var(--nsl-accent);
+	background: var(--nsl-accent-soft);
+	color: var(--nsl-accent-dark);
+}

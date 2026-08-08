@@ -34,6 +34,7 @@ require_once NSL_THEME_DIR . '/inc/account/security.php';
 require_once NSL_THEME_DIR . '/inc/checkout/gateways.php';
 require_once NSL_THEME_DIR . '/inc/checkout/flow.php';
 require_once NSL_THEME_DIR . '/inc/checkout/address.php';
+require_once NSL_THEME_DIR . '/inc/checkout/identity.php';
 
 // Affiliate and referral programme.
 require_once NSL_THEME_DIR . '/inc/affiliates.php';
